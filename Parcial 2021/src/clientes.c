@@ -11,7 +11,7 @@ int menu()
 {
     system("cls");
 	int opcion;
-	opcion=validarEntero("1)ALTA CLIENTE\n2)MODIFICAR CLIENTE\n3)BAJA CLIENTE\n4)CREAR PEDIDO\n5)PROCESAR RESIDUO\n6)IMPRIMIR CLIENTE\n7)IMPRIMIR PEDIDOS PEND\n8)IMPRIMIR PEDIDOS PROC\n9)IMP PED PEND POR LOC\n10)CANT POL REC\n\n\nIngrese opcion: \n", "Opcion invalidad, reingrese opcion: \n", 1, 10);
+	opcion=validarEntero("1)ALTA CLIENTE\n2)MODIFICAR CLIENTE\n3)BAJA CLIENTE\n4)CREAR PEDIDO\n5)PROCESAR RESIDUO\n6)IMPRIMIR CLIENTE\n7)IMPRIMIR PEDIDOS PEND\n8)IMPRIMIR PEDIDOS PROC\n9)IMP PED PEND POR LOC\n10)CANT POL REC\n11)PUNTO 3A\n\n\nIngrese opcion: \n", "Opcion invalidad, reingrese opcion: \n", 1, 11);
 	return opcion;
 }
 

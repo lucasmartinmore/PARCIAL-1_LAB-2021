@@ -18,11 +18,14 @@
 #define TAM_PROCESAR 1000
 #define TAM_PEDIDO 1000
 
-//FUNCIONES EXTRAS POR SI LAS MOSCAS
+//FUNCIONES EXTRAS
 int buscarPedidoMasKilosPendiente(ePedido pedidos[], int tamPedido);
 void mostrarPedidoPendienteMasKilos(ePedido pedidos[], int tamPedido, int kilosMasPesado);
 int buscarPedidoMasKilosProcesadoPP(eProcesar procesar[], int tamProcesar);
 void mostrarPedidoProcesadoPPMasKilos(eProcesar procesar[], int tamProcesar, int kilosMasPesado);
+//PUNTO 3 A
+int buscarClienteConMasPendiente(ePedido pedidos[], int tamPedido, eCliente clientes[], int tamCliente,int* idCliente);
+void mostrarClienteConMasPedidoPendiente(eCliente clientes[], int tamCliente, int contadorPedidos, int idCliente);
 
 int main(void) {
 	setbuf(stdout,NULL);
@@ -82,6 +85,11 @@ int main(void) {
 
 	int posicionLibreProcesar;
 	int posicionDisponibleProcesar;
+
+	//VARIABLES PUNTO A
+
+	int contadorPedidosEncontrados;
+	int idClientePedido;
 
 	char seguir='s';
 	do
@@ -176,6 +184,11 @@ int main(void) {
 			cantidadPoplipropilenoxCliente(procesar, TAM_PROCESAR);
 			system("pause");
 			break;
+		case 11:
+			contadorPedidosEncontrados=buscarClienteConMasPendiente(pedidos, TAM_PEDIDO, clientes, TAM_CLIENTE, &idClientePedido);
+			mostrarClienteConMasPedidoPendiente(clientes, TAM_CLIENTE, contadorPedidosEncontrados, idClientePedido);
+			system("pause");
+			break;
 		}
 	}while(seguir=='s');
 	return EXIT_SUCCESS;
@@ -250,30 +263,44 @@ void mostrarPedidoProcesadoPPMasKilos(eProcesar procesar[], int tamProcesar, int
 		}
 	}
 }
+/*
+ * Cliente con más pedidos pendientes.
+ */
 
-int buscarClienteConMasPendiente(ePedido pedidos[], int tamPedido)
+int buscarClienteConMasPendiente(ePedido pedidos[], int tamPedido, eCliente clientes[], int tamCliente, int* idCliente)
 {
-	int acumuladorCliente=0;
-	int KilosMasPesado;
-	if(pedidos!=NULL && tamPedido>0)
-	{
-		for(int i=0; i<tamPedido; i++)
-		{
-			if(pedidos[i].isEmpty==1 && strcmp(pedidos[i].estado,"Pendiente")==0)
-			{
-				contador++;
-				/*
-				 *
-				if((banderaInicial==0 || pedidos[i].cantidadKilos>KilosMasPesado) && strcmp(pedidos[i].estado,"Pendiente")==0)
-				{
-					KilosMasPesado=pedidos[i].cantidadKilos;
-					banderaInicial=1;
-				}
-				*/
+	int contadorClientes=0;
+	*idCliente=-1;
 
+	if(pedidos!=NULL && clientes!=NULL && tamPedido>0 && tamCliente>0)
+	{
+		for(int i=0; i<tamCliente; i++)
+		{
+			for(int j=0; j<tamPedido; j++)
+			{
+				if(clientes[i].idCliente==pedidos[j].idPedido && strcmp(pedidos[j].estado, "Pendiente")==0)
+				{
+					contadorClientes++;
+					*idCliente=clientes[i].idCliente;
+				}
 			}
 		}
 	}
-	return KilosMasPesado;
+	return contadorClientes;
+}
+
+void mostrarClienteConMasPedidoPendiente(eCliente clientes[], int tamCliente, int contadorPedidos, int idCliente)
+{
+	if(clientes!=NULL && tamCliente>0)
+	{
+		for(int i=0; i<tamCliente; i++)
+		{
+			if(clientes[i].isEmpty==1 && clientes[i].idCliente==idCliente)
+			{
+				printf("El cliente con %d pendiente es: \n",contadorPedidos);
+				mostrarCliente(clientes[i]);
+			}
+		}
+	}
 }
 
