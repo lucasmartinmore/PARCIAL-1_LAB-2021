@@ -12,6 +12,7 @@
 #include "procesados.h"
 #include "informes.h"
 
+
 //DEFINE DE TAMAÑOS
 #define TAM_CLIENTE 100
 #define TAM_PROCESAR 1000
@@ -28,7 +29,7 @@ int main(void) {
 
 	//ARRAYS PRINCIPALES
 
-	eCliente clientes[TAM_CLIENTE]=
+	eCliente clientes[TAM_CLIENTE];/*=
 	{
 	{100,"Philips",14562,"Barragan 858","G.Catan",1},
 	{101,"Malboro",87456,"Saenz 875","Laferrere",1},
@@ -37,9 +38,9 @@ int main(void) {
 	{104,"Luchetti",74589,"Atalco 5874","C.Evita",1},
 	{105,"PepitoSA",57478,"Piedras 858","Balvanera",1},
 	{106,"Pepa SRL",74529,"Guemes 7845","Casanova",1}
-	};
+	};*/
 
-	ePedido pedidos[TAM_PEDIDO]=
+	ePedido pedidos[TAM_PEDIDO];/*=
 	{
 	{100,1,25,"Pendiente",1},
 	{100,2,35,"Pendiente",1},
@@ -51,7 +52,7 @@ int main(void) {
 	{106,8,64,"Pendiente",1},
 	{107,9,38,"Pendiente",1},
 	{108,10,27,"Pendiente",1},
-	};
+	};*/
 
 	eProcesar procesar[TAM_PROCESAR];
 
@@ -62,11 +63,11 @@ int main(void) {
 	int contadorProcesar=200;
 
 	//INICIADORES DE ARRAYS
-	/*QUITAR EN CASO DE HARDCODEO
+	//QUITAR EN CASO DE HARDCODEO
 	inicializarCliente(clientes, TAM_CLIENTE);
 	inicializarPedido(pedidos, TAM_PEDIDO);
 	inicializarProcesar(procesar, TAM_PROCESAR);
-    */
+
 	//VARIABLES DE CLIENTES
 
 	int posicionLibreCliente;
@@ -248,5 +249,31 @@ void mostrarPedidoProcesadoPPMasKilos(eProcesar procesar[], int tamProcesar, int
 			}
 		}
 	}
+}
+
+int buscarClienteConMasPendiente(ePedido pedidos[], int tamPedido)
+{
+	int acumuladorCliente=0;
+	int KilosMasPesado;
+	if(pedidos!=NULL && tamPedido>0)
+	{
+		for(int i=0; i<tamPedido; i++)
+		{
+			if(pedidos[i].isEmpty==1 && strcmp(pedidos[i].estado,"Pendiente")==0)
+			{
+				contador++;
+				/*
+				 *
+				if((banderaInicial==0 || pedidos[i].cantidadKilos>KilosMasPesado) && strcmp(pedidos[i].estado,"Pendiente")==0)
+				{
+					KilosMasPesado=pedidos[i].cantidadKilos;
+					banderaInicial=1;
+				}
+				*/
+
+			}
+		}
+	}
+	return KilosMasPesado;
 }
 

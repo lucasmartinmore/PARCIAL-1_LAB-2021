@@ -12,14 +12,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include "validaciones.h"
+#include "localidad.h"
 
 typedef struct
 {
     int idCliente;
     char nombreEmpresa[50];
     int cuil;
-    char direccion[50];
-    char localidad[50];
+    //char direccion[50];
+    //char localidad[50];
+    eLocalidad direccion;
+    eLocalidad localidad;
     int isEmpty;
 }eCliente;
 

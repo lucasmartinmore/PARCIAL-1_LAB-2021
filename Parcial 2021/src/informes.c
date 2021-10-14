@@ -25,7 +25,7 @@ int mostrarPedidosPendienteConCliente(ePedido pedidos[],int tamPedidos, eCliente
 					if(pedidos[i].idCliente==clientes[j].idCliente)
 					{
 						printf("%2d    %7s  %2d   %5d  %8s\n",pedidos[i].idPedido,pedidos[i].estado,
-						pedidos[i].cantidadKilos,clientes[j].cuil,clientes[j].direccion);
+						pedidos[i].cantidadKilos,clientes[j].cuil,clientes[j].direccion.direccion);
 						printf("-------------------------------------\n");
 						error=0;
 					    //break;
@@ -84,10 +84,10 @@ int mostrarPedidosPorLocalidad(ePedido pedidos[], int tamPedido, eCliente client
 			{
 				for(int j=0; j<tamCliente; j++)
 				{
-					if(strcmp(clientes[j].localidad,localidad)==0 && clientes[j].idCliente==pedidos[i].idCliente)
+					if(strcmp(clientes[j].localidad.localidad,localidad)==0 && clientes[j].idCliente==pedidos[i].idCliente)
 					{
 						printf("%2d    %7s  %2d   %5d  %8s\n",pedidos[i].idPedido,pedidos[i].estado,
-						pedidos[i].cantidadKilos,clientes[j].cuil,clientes[j].direccion);
+						pedidos[i].cantidadKilos,clientes[j].cuil,clientes[j].direccion.direccion);
 						error=0;
 					}
 				}

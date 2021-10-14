@@ -6,6 +6,7 @@
  */
 #include "clientes.h"
 
+
 int menu()
 {
     system("cls");
@@ -54,8 +55,8 @@ int altaCliente(eCliente clientes[], int posicion, int id)
 	if(clientes!=NULL && posicion!=-1)
 	{
 		validarCadena("Ingrese nombre de la empresa: \n","Nombre invalido, reingrese nuevamente: \n", 50,clientes[posicion].nombreEmpresa);
-		validarCadena("Ingrese direccion de la empresa: \n","Direccion invalida, reingrese nuevamente: \n", 50,clientes[posicion].direccion);
-		validarCadena("Ingrese localidad de la empresa: \n","Localidad invalida, reingrese nuevamente: \n", 50,clientes[posicion].localidad);
+		validarCadena("Ingrese direccion de la empresa: \n","Direccion invalida, reingrese nuevamente: \n", 50,clientes[posicion].direccion.direccion);
+		validarCadena("Ingrese localidad de la empresa: \n","Localidad invalida, reingrese nuevamente: \n", 50,clientes[posicion].localidad.localidad);
 		clientes[posicion].cuil=validarEntero("Ingrese CUIT de la empresa: \n","CUIT invalido, reingrese nuevamente: \n", 1, 99999);
 		clientes[posicion].idCliente=id;
 		clientes[posicion].isEmpty=1;
@@ -87,7 +88,7 @@ void mostrarCliente(eCliente cliente)
 	printf("ID   NOMBRE   CUIT   DIRECCION   LOCALIDAD\n");
 	printf("------------------------------------------\n");
 	printf("%3d %8s %6d %12s %10s\n",cliente.idCliente,cliente.nombreEmpresa,
-	cliente.cuil,cliente.direccion,cliente.localidad);
+	cliente.cuil,cliente.direccion.direccion,cliente.localidad.localidad);
 }
 
 int mostrarClientes(eCliente clientes[], int tamCliente)
@@ -193,11 +194,11 @@ int modificarCliente(eCliente clientes[], int tamCliente)
 			{
 			case 1:
 				validarCadena("Ingrese nueva direccion: \n","Error, reingrese nueva direccion: \n", 50, auxDireccion);
-				strcpy(clientes[posicion].direccion,auxDireccion);
+				strcpy(clientes[posicion].direccion.direccion,auxDireccion);
 				break;
 			case 2:
 				validarCadena("Ingrese nueva localidad: \n","Error, reingrese nueva localidad: \n", 50, auxLocalidad);
-				strcpy(clientes[posicion].localidad,auxLocalidad);
+				strcpy(clientes[posicion].localidad.localidad,auxLocalidad);
 				break;
 			}
 			error=0;
